@@ -1,0 +1,260 @@
+/* --- VARIABLES Y RESET BÁSICO --- */
+:root {
+    --bg-color: #ffffff;
+    --text-main: #000000;
+    --text-placeholder: #a0a0a0;
+    --border-color: #000000;
+    --error-color: #d93025;
+    /* Rojo accesible */
+    --gray-light: #e8e8e8;
+    --gray-dark: #666666;
+    --font-family: 'Inter', sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--font-family);
+    background-color: #f5f5f5;
+    /* Fondo suave para que resalte la tarjeta */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+/* --- CONTENEDOR PRINCIPAL --- */
+.card-container {
+    background: var(--bg-color);
+    border: 2px solid var(--border-color);
+    border-radius: 24px;
+    padding: 40px;
+    width: 100%;
+    max-width: 900px;
+    /* Sombra sutil para dar profundidad */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+}
+
+.profile-form {
+    display: flex;
+    gap: 60px;
+    /* Separación entre formulario y barra lateral */
+    flex-wrap: wrap;
+    /* Para que sea responsive en pantallas pequeñas */
+}
+
+/* --- COLUMNA IZQUIERDA: INPUTS --- */
+.form-inputs {
+    flex: 1;
+    min-width: 300px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.input-group label {
+    font-weight: 500;
+    font-size: 1rem;
+    color: var(--text-main);
+}
+
+.input-group input {
+    width: 100%;
+    padding: 14px 16px;
+    font-size: 1rem;
+    border: 2px solid var(--border-color);
+    border-radius: 10px;
+    font-family: inherit;
+    transition: border-color 0.2s ease;
+}
+
+/* Estilo del placeholder para que se vea como en el diseño */
+.input-group input::placeholder {
+    color: var(--text-placeholder);
+    font-weight: 400;
+}
+
+/* 
+  ESTADO DE FOCO: 
+  Muy importante para accesibilidad. Usamos un outline claro y grueso.
+  No lo eliminamos nunca.
+*/
+.input-group input:focus {
+    outline: 3px solid #000;
+    outline-offset: 2px;
+}
+
+/* --- ESTILOS DE ERROR --- */
+/* 
+  En la imagen el borde es rojo y el texto del input también.
+  Vamos a replicar eso.
+*/
+.input-error {
+    border-color: var(--error-color) !important;
+    color: var(--error-color);
+}
+
+.error-message {
+    color: var(--error-color);
+    font-size: 0.85rem;
+    font-weight: 500;
+    margin-top: 4px;
+}
+
+/* --- WRAPPER DE CONTRASEÑA Y BOTÓN DE OJO --- */
+.password-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+/* Espacio extra a la derecha para que el texto no choque con el icono */
+.password-wrapper input {
+    padding-right: 50px;
+}
+
+.toggle-password {
+    position: absolute;
+    right: 12px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--text-main);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+    border-radius: 4px;
+}
+
+/* Foco visible para el botón del ojo (accesibilidad teclado) */
+.toggle-password:focus {
+    outline: 2px solid #000;
+    outline-offset: 2px;
+}
+
+/* --- BOTÓN DE ENVÍO --- */
+.submit-btn {
+    margin-top: 10px;
+    padding: 16px;
+    background-color: var(--text-main);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 1.1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.submit-btn:hover {
+    background-color: #333;
+    /* Un gris muy oscuro casi negro */
+}
+
+/* Foco visible en el botón */
+.submit-btn:focus {
+    outline: 3px solid #000;
+    outline-offset: 4px;
+}
+
+/* --- COLUMNA DERECHA: STATUS --- */
+.profile-status {
+    width: 300px;
+    /* Ancho fijo para la barra lateral */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.progress-circle-container {
+    position: relative;
+    width: 120px;
+    height: 120px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* El texto dentro del círculo (65%) */
+.progress-text {
+    position: absolute;
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: var(--text-main);
+}
+
+/* Rotación del círculo para que empiece arriba */
+.progress-ring {
+    transform: rotate(-90deg);
+}
+
+/* Animación opcional para cuando cargue la página */
+.progress-ring-fill {
+    transition: stroke-dashoffset 0.5s ease-in-out;
+}
+
+.status-title {
+    font-size: 1.1rem;
+    font-weight: 500;
+    text-align: center;
+    margin-top: 10px;
+}
+
+/* --- CAJA DE CHECKLIST --- */
+.checklist-box {
+    background-color: var(--gray-light);
+    border-radius: 20px;
+    padding: 24px;
+    width: 100%;
+}
+
+.checklist {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.checklist li {
+    font-size: 0.95rem;
+    color: var(--text-main);
+    position: relative;
+    padding-left: 0;
+}
+
+/* Estilo para tareas completadas (tachadas y grises) */
+.checklist li.completed {
+    color: var(--gray-dark);
+    text-decoration: line-through;
+    opacity: 0.7;
+}
+
+/* --- RESPONSIVE --- */
+@media (max-width: 768px) {
+    .profile-form {
+        flex-direction: column-reverse;
+        /* Ponemos el progreso arriba en móvil */
+        gap: 40px;
+    }
+
+    .profile-status {
+        width: 100%;
+    }
+
+    .card-container {
+        padding: 24px;
+    }
+}

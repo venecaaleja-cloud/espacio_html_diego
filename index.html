@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Perfil Accesible</title>
+    <link rel="stylesheet" href="Styles.css">
+    <!-- Importamos una fuente limpia para que se parezca al diseño -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <main class="card-container">
+        <!-- 
+          Usamos un <form> real. Aunque no tenga backend, es vital para la semántica.
+          aria-labelledby conecta el formulario con el título (aunque aquí no haya título visible, es buena práctica si lo hubiera).
+        -->
+        <form class="profile-form" action="#" method="POST">
+
+            <!-- SECCIÓN IZQUIERDA: CAMPOS DE ENTRADA -->
+            <div class="form-inputs">
+
+                <!-- Campo: Nombre Completo -->
+                <div class="input-group">
+                    <label for="fullName">Nombre completo</label>
+                    <input type="text" id="fullName" name="fullName" placeholder="What should we call you?"
+                        aria-required="true">
+                </div>
+
+                <!-- Campo: Email (con error simulado como en la imagen) -->
+                <div class="input-group error-group">
+                    <label for="email">Gmail</label>
+                    <!-- aria-invalid y aria-describedby son clave aquí -->
+                    <input type="email" id="email" name="email" value="diiegox.com" aria-required="true"
+                        aria-invalid="true" aria-describedby="emailError" class="input-error">
+                    <!-- Mensaje de error con role="alert" para que el lector de pantalla lo anuncie -->
+                    <span id="emailError" class="error-message" role="alert">Email is already taken</span>
+                </div>
+
+                <!-- Campo: Contraseña -->
+                <div class="input-group">
+                    <label for="password">Ingresr Contraseña</label>
+                    <div class="password-wrapper">
+                        <input type="password" id="password" name="password" placeholder="xxxxxxxx"
+                            aria-required="true">
+                        <!-- Botón para ver/ocultar. Usamos type="button" para que no envíe el form -->
+                        <button type="button" class="toggle-password" aria-label="Show password">
+                            <!-- Icono de ojo (SVG simple) -->
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" aria-hidden="true">
+                                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                <circle cx="12" cy="12" r="3"></circle>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Campo: Confirmar Contraseña -->
+                <div class="input-group">
+                    <label for="confirmPassword">Confirmar Contraseña</label>
+                    <div class="password-wrapper">
+                        <input type="password" id="confirmPassword" name="confirmPassword" placeholder="xxxxxxxx"
+                            aria-required="true">
+                        <button type="button" class="toggle-password" aria-label="Show password">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" aria-hidden="true">
+                                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                <circle cx="12" cy="12" r="3"></circle>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Botón de envío -->
+                <button type="submit" class="submit-btn">Update Profile</button>
+
+            </div>
+
+            <!-- SECCIÓN DERECHA: PROGRESO Y CHECKLIST -->
+            <aside class="profile-status">
+
+                <!-- Gráfico de progreso circular -->
+                <div class="progress-circle-container">
+                    <!-- 
+                      Usamos un SVG para el círculo. 
+                      El atributo role="img" y aria-label describen el progreso para lectores de pantalla.
+                    -->
+                    <svg class="progress-ring" width="120" height="120" role="img"
+                        aria-label="Profile completeness: 65 percent">
+                        <circle class="progress-ring-bg" stroke="#e0e0e0" stroke-width="6" fill="transparent" r="52"
+                            cx="60" cy="60" />
+                        <!-- El stroke-dasharray se calcula: 2 * PI * radio (52) ≈ 326. Si queremos 65%, es 326 * 0.65 ≈ 211 -->
+                        <circle class="progress-ring-fill" stroke="black" stroke-width="6" fill="transparent" r="52"
+                            cx="60" cy="60" stroke-dasharray="326" stroke-dashoffset="114" />
+                    </svg>
+                    <span class="progress-text" aria-hidden="true">65%</span>
+                </div>
+
+                <h2 class="status-title">Completitud del perfil</h2>
+
+                <!-- Lista de tareas -->
+                <div class="checklist-box">
+                    <ul class="checklist">
+                        <!-- Tareas completadas (tachadas) -->
+                        <li class="completed">trabajo github paset</li>
+                        <li class="completed">clases en line</li>
+                        <li class="completed">trabajo 7</li>
+                        <!-- Tareas pendientes -->
+                        <li>trabajo N°9</li>
+                        <li>trabajo N°10</li>
+                    </ul>
+                </div>
+
+            </aside>
+
+        </form>
+    </main>
+
+</body>
+
+</html>
